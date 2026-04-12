@@ -5,7 +5,7 @@ module.exports = {
         //'./node_modules/tw-elements/js/**/*.js',
         //"./node_modules/flowbite/**/*.js"
       ],
-  //darkMode: 'class',
+  darkMode: 'class',
   theme: {
     extend: {
       boxShadow: {
