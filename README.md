@@ -6,7 +6,13 @@ Static personal portfolio site. Single-page HTML styled with Tailwind CSS, deplo
 
 - **HTML** — `index.html` contains the entire site (Biography, Projects, Certificates, Testimonials)
 - **Tailwind CSS v3** — utility-first styling with two custom `boxShadow` utilities: `shadow-neon` and `shadow-low`
+- **Flowbite** — carousel component for the Testimonials section (loaded via CDN)
 - **Prettier** — HTML formatting via `prettier-plugin-tailwindcss`
+
+## Features
+
+- **Dark mode** — toggle button in the nav (desktop and mobile). Initializes from `prefers-color-scheme`; user preference persists via `localStorage`.
+- **Testimonials carousel** — Flowbite slide carousel with prev/next controls.
 
 ## Development
 

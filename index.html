@@ -7,7 +7,16 @@
     <title>Jason Blackert's Portfolio</title>
     <link rel="stylesheet" href="./build/css/style.css">
     <link rel="icon" href=./build/assets/space-invaders.ico>
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
 
 <!-- Header -->
@@ -17,15 +26,17 @@
             <h1 class="text-3xl font-medium">
                 <a href="#biography">👾 Jason Blackert</a>
             </h1>
-            <div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle-mobile" aria-label="Toggle dark mode" class="text-2xl sm:hidden focus:outline-none hover:opacity-90">🌙</button>
                 <button id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none">
                     &#9776;
                 </button>
-                <nav class="hidden sm:block space-x-8 text-xl" aria-label="main">
+                <nav class="hidden sm:flex items-center space-x-8 text-xl" aria-label="main">
                     <a href="#biography" class="hover:opacity-90">Biography</a>
                     <a href="#projects-engineering" class="hover:opacity-90">Projects</a>
                     <a href="#certificates" class="hover:opacity-90">Certificates</a>
                     <a href="#testimonials" class="hover:opacity-90">Testimonial</a>
+                    <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none hover:opacity-90">🌙</button>
                 </nav>
             </div>
         </section>
@@ -220,7 +231,7 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                      <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item>
+                    <div class="duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item="active">
                         <a class="w-full align-top" href="https://www.linkedin.com/in/asamurphy75">
                                 <div class="flex flex-row">
                                     <img src="./build/assets/linkedin-image-asa.jpg" class="rounded-full w-12 h-12" alt="Asa Murphy">
@@ -238,7 +249,7 @@
                     </div>
 
                     <!-- Item 2 -->
-                    <div class=" duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item>
+                    <div class="duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item>
                         <a class="w-full align-top" href="https://www.linkedin.com/in/luisaguilarg/">
                                 <div class="flex flex-row">
                                     <img src="./build/assets/linkedin-image-luis.jpg" class="rounded-full w-12 h-12" alt="Luis Aguilar García">
@@ -284,7 +295,23 @@
         </section>
 
     </main>
-    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>
+        const btns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+        function applyTheme(dark) {
+            document.documentElement.classList.toggle('dark', dark);
+            btns.forEach(function(b) { if (b) b.textContent = dark ? '☀️' : '🌙'; });
+        }
+        applyTheme(document.documentElement.classList.contains('dark'));
+        btns.forEach(function(btn) {
+            if (!btn) return;
+            btn.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                btns.forEach(function(b) { if (b) b.textContent = isDark ? '☀️' : '🌙'; });
+            });
+        });
+    </script>
 <!-- Footer -->
     <footer class="bg-indigo-400 text-white">
         <section class="max-w-4xl mx-auto flex justify-between items-center ">
