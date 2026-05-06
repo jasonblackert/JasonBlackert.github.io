@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="./build/css/style.css">
     <link rel="icon" href=./build/assets/space-invaders.ico>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        .title-bar { overflow: hidden; }
+        .title-text { white-space: nowrap; display: inline-block; transition: transform 1.5s ease-in-out; }
+        .title-bar:hover .title-text { transform: translateX(-2.5rem); }
+        .title-bar .rounded-full { position: relative; z-index: 1; }
+    </style>
     <script>
         (function() {
             const saved = localStorage.getItem('theme');
@@ -21,282 +29,314 @@
 
 <!-- Header -->
 <body class="min-h-screen bg-slate-50 dark:bg-gray-800 dark:text-white">
-    <header class="bg-indigo-400 text-white sticky top-0 z-10">
-        <section class="max-w-4xl mx-auto p-4 flex justify-between items-center ">
+    <header class="bg-indigo-900 text-white sticky top-0 z-10">
+        <section class="max-w-4xl mx-auto p-4">
             <h1 class="text-3xl font-medium">
-                <a href="#biography">👾 Jason Blackert</a>
+                <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener">👾 Jason Blackert</a>
             </h1>
-            <div class="flex items-center gap-4">
-                <button id="theme-toggle-mobile" aria-label="Toggle dark mode" class="text-2xl sm:hidden focus:outline-none hover:opacity-90">🌙</button>
-                <button id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none">
-                    &#9776;
-                </button>
-                <nav class="hidden sm:flex items-center space-x-8 text-xl" aria-label="main">
-                    <a href="#biography" class="hover:opacity-90">Biography</a>
-                    <a href="#projects-engineering" class="hover:opacity-90">Projects</a>
-                    <a href="#certificates" class="hover:opacity-90">Certificates</a>
-                    <a href="#testimonials" class="hover:opacity-90">Testimonial</a>
-                    <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none hover:opacity-90">🌙</button>
-                </nav>
-            </div>
         </section>
     </header>
 
 <!-- Biography -->
-    <main class="max-w-5xl mx-auto">
-        <section id="biography"
-            class="flex flex-col-reverse justify-center sm:flex-row p-6 items-center gap-8 mb-12 scroll-mt-40">
-            <article class="sm:w-1/2">
-                <h2 class="max-w-md text-4xl font-bold text-center sm:text-5xl sm:text-center text-slate-900 dark:text-white">
-                    This is<br> <span class="text-indigo-400 dark:text-indigo-300">Jason Blackert</span>
-                </h2>
-                <p class="max-w-md text-2xl mt-4 text-center sm:text-center text-slate-700 dark:text-slate-400">
-                    After studying Computer Engineering at Texas State University, I gained a strong background in Embedded Software and Firmware Engineering through my time working at Tactual Labs Co. and Yotta Energy Co.
-                </p>
-                <p class="max-w-md text-2xl mt-4 text-center sm:text-center text-slate-700 dark:text-slate-400">
-                    Currently, I'm spending my free time training for a marathon and designing a monitoring system to catch the pesky possum munching on our garden at night.
-                </p>
-            </article>
-            <img class="w-1/2 rounded-lg " src="./build/assets/bust-normal.jpg" alt="Jason Blackert">
-        </section>
-        <hr class="mx-auto bg-black dark:bg-white w-2/3">
+    <main class="max-w-5xl mx-auto p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-<!-- Quote -->
-        <section id="hobbies" class="p-6 scroll-mt-20 my-12">
-            <figure class="my-12">
-                <blockquote class="bg-indigo-400 dark:bg-gray-800 pl-14 pr-8 py-24 rounded-3xl relative">
-                    <p
-                        class="text-2xl sm:text-3xl text-left mt-2 text-white dark:text-slate-400 before:content-['\201C'] before:font-serif before:absolute before:top-0 before:left-0 before:text-9xl before:text-white before:opacity-25 before:transform before:translate-x-2 before:translate-y-2 after:content-['\201D'] after:font-serif after:absolute after:-bottom-20 after:right-0 after:text-9xl after:text-white after:opacity-25 after:transform after:-translate-x-2 after:-translate-y-2">
-                        --But I work hard and never give up; that is my gift.
-                    </p>
-                </blockquote>
-                <figcaption class="italic text-xl sm:text-2xl text-right mt-2 text-slate-500 dark:text-slate-400">
-                    &#8212;Rock Lee, Naruto
-                </figcaption>
-            </figure>
-        </section>
-        <hr class="mx-auto bg-black dark:bg-white w-2/3">
-
-<!-- Projects -->
-<!-- Engineering Projects -->
-        <section id="projects-engineering" class="p-6 my-12 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                Engineering <span class="text-indigo-400 dark:text-indigo-300">Projects</span>
-            </h2>
-
-            <ul class="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
-                   <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/mqtt-app">
-                        <img src="./build/assets/asset-manager.png" alt="MQTT-App">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            Asset Manager
-                        </h3>
-                        <p class="text-xl text-center">
-                            PyQt5 Application
-                        </p>
-                    </a>
-                </li>
-
-
-                <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/whiskey">
-                        <img src="./build/assets/whiskey.png" alt="">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            "Whiskey"
-                        </h3>
-                        <p class="text-xl text-center">
-                            Flask Application
-                        </p>
-                    </a>
-                </li>
-
-                <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/JasonBlackert.github.io">
-                        <img class="w-64" src="./build/assets/bust-normal.jpg" alt="">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            GitHub.io Source
-                        </h3>
-                        <p class="text-xl text-center">
-                            Tailwind CSS
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </section>
-        <hr class="mx-auto bg-black dark:bg-white w-2/3">
-
-<!-- Personal Projects -->
-        <section id="projects-personal" class="p-6 my-12 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                Personal <span class="text-indigo-400 dark:text-indigo-300">Projects</span>
-            </h2>
-
-            <ul class="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
-                <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/pulse">
-                        <img class="w-5/6" src="./build/assets/software-engineer.png" alt="">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            Pulse
-                        </h3>
-                        <p class="text-xl text-center">
-                            Self-healing WiFi Mesh
-                        </p>
-                    </a>
-                </li>
-
-                <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/drums">
-                        <img class="w-5/6" src="./build/assets/software-engineer.png" alt="">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            D.Ru.M.S.
-                        </h3>
-                        <p class="text-xl text-center">
-                            Wirelss Image Relay
-                        </p>
-                    </a>
-                </li>
-
-                <li class="w-2/3 flex sm:w-5/6 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://github.com/jasonblackert/servo2alexa">
-                        <img class="w-5/6" src="./build/assets/software-engineer.png" alt="">
-                        <h3 class="text-3xl text-center text-slate-900 dark:text-white">
-                            servo2alexa
-                        </h3>
-                        <p class="text-xl text-center">
-                            Alexa Servo Controller
-                        </p>
-                    </a>
-                </li>
-            </ul>
-
-        </section>
-        <hr class="mx-auto bg-black dark:bg-white w-2/3">
-
-<!-- Diploma & Certificates -->
-        <section id="certificates" class="p-6 my-12 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                Diploma & <span class="text-indigo-400 dark:text-indigo-300">Certificates</span>
-            </h2>
-
-            <ul class="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
-                <li class="w-2/3 flex sm:w-1/2 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low">
-                    <a href="https://mycatalog.txstate.edu/undergraduate/science-engineering/ingram-school/electrical-engineering-computer-specialization-bs/">
-                        <img src="./build/assets/txst-seal.png" alt="">
-                        <h3 class="text-3xl sm:text-xl text-center text-slate-900 dark:text-white">
-                            Computer Engineering
-                        </h3>
-                        <p class="text-xl sm:text-sm text-center">
-                            Electrical Engineering, BS
-                        </p>
-                    </a>
-                </li>
-
-
-                <li class="w-2/3 flex sm:w-1/2 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low ">
-                    <a href="https://mycatalog.txstate.edu/undergraduate/science-engineering/ingram-school/electrical-engineering-computer-specialization-bs/">
-                        <img src="./build/assets/txst-seal.png" alt="">
-                        <h3 class="text-3xl sm:text-xl text-center text-slate-900 dark:text-white">
-                            TBD
-                        </h3>
-                        <p class="text-xl sm:text-sm text-center">
-                            TBD
-                        </p>
-                    </a>
-                </li>
-
-                <li class="w-2/3 flex sm:w-1/2 flex-col items-center border border-solid border-slate-900 dark:border-gray-200 bg-white dark:bg-gray-800 py-6 px-2 rounded-3xl shadow-low ">
-                    <a href="https://mycatalog.txstate.edu/undergraduate/science-engineering/ingram-school/electrical-engineering-computer-specialization-bs/">
-                        <img src="./build/assets/txst-seal.png" alt="">
-                        <h3 class="text-3xl sm:text-xl text-center text-slate-900 dark:text-white">
-                            TBD
-                        </h3>
-                        <p class="text-xl sm:text-sm text-center">
-                            TBD
-                        </p>
-                    </a>
-                </li>
-            </ul>
-
-
-        </section>
-        <hr class="mx-auto bg-black dark:bg-white w-2/3">
-
-<!-- Testimonials & Recommendations -->
-        <section id="testimonials" class="p-6 my-12 scroll-mt-20">
-            <h2 class="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-                Testimonials & <span class="text-indigo-400 dark:text-indigo-300">Recommendations</span>
-            </h2>
-
-            <div id="default-carousel" class="relative w-full" data-carousel="slide" data-carousel-interval="8000">
-                <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                     <!-- Item 1 -->
-                    <div class="duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item="active">
-                        <a class="w-full align-top" href="https://www.linkedin.com/in/asamurphy75">
-                                <div class="flex flex-row">
-                                    <img src="./build/assets/linkedin-image-asa.jpg" class="rounded-full w-12 h-12" alt="Asa Murphy">
-                                <div class="flex flex-col px-2">
-                                    <div class="flex flow-row">
-                                        <strong class="text-gray-800 dark:text-white"> Asa Murphy</strong> <span class="text-gray-600 dark:text-slate-200 px-1"> · 1st</span></div>
-                                    <span class="top-14 tracking-normal text-gray-800 dark:text-white">Software Engineer</span>
-                                    <i class="text-gray-800 dark:text-white "> April 1, 2024</i>
-                                </div>
-                            </div>
-                        </a>
-                        <p class="px-12 py-4 mr-2 text-gray-800 dark:text-white">
-                            "Jason is someone who knows how to lead by example. I consider him to be one of my early mentors even though we are around the same age. He has provided me great insight in the technology space, and will always go the extra mile to make sure a sound understanding in an unfamiliar concept is gained. If I had to describe Jason in one word it would be experienced. He knows how to execute and teach others to do the same. These are vital traits for an engineer to have."
-                        </p>
+            <!-- Terminal Bio: 2 wide, 2 tall on lg -->
+            <div id="biography" class="lg:col-span-2 scroll-mt-20 h-96 flex flex-col">
+                <a href="./build/assets/Blackert_Jason_Resume.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
+                <article class="rounded-lg overflow-hidden hover:shadow-neon transition-shadow duration-300 font-mono text-sm flex flex-col h-full">
+                    <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                        <span class="group w-3 h-3 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[8px] text-red-900 font-bold leading-none select-none">×</span></span>
+                        <span class="group w-3 h-3 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[8px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                        <span class="group w-3 h-3 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[8px] text-green-900 font-bold leading-none select-none">□</span></span>
+                        <span class="text-gray-400 text-xs ml-2 title-text">jason@portfolio:~</span>
                     </div>
-
-                    <!-- Item 2 -->
-                    <div class="duration-700 ease-in-out px-20 py-8 bg-slate-50 text-gray-800 dark:bg-gray-800 dark:text-white" data-carousel-item>
-                        <a class="w-full align-top" href="https://www.linkedin.com/in/luisaguilarg/">
-                                <div class="flex flex-row">
-                                    <img src="./build/assets/linkedin-image-luis.jpg" class="rounded-full w-12 h-12" alt="Luis Aguilar García">
-                                <div class="flex flex-col px-2">
-                                    <div class="flex flow-row">
-                                        <strong class="text-gray-800 dark:text-white"> Luis Alberto Aguilar García</strong> <span class="text-gray-600 dark:text-slate-200 px-1"> · 1st</span>
-                                    </div>
-                                    <span class="top-14 tracking-normal text-gray-800 dark:text-white">Firmware Engineer | MBA</span>
-                                    <i class="text-gray-800 dark:text-white"> March 1, 2024</i>
-                                </div>
-                            </div>
-                        </a>
-                        <p class="px-12 py-4 mr-4 text-gray-800 dark:text-white">
-                            "It was a pleasure working with Jason. He was a highly proactive and determined individual, always eager to get things done. He demonstrated a strong desire for continuous learning and was enthusiastic about sharing his knowledge with others. Without a doubt, he is someone who is willing to go above and beyond to ensure that projects are successfully completed. I have no doubt that Jason will continue to excel in his career and I wish him every success in his future endeavors."
-                        </p>
-                    </div>
-
-                </div>
-                <!-- Slider indicators (Bottom) -->
-                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                    <button type="button" class="w-3 h-3 rounded-full bg-indigo-400 dark:bg:slate-50" aria-current="true" aria-label="Slide 0" data-carousel-slide-to="1"></button>
-                    <button type="button" class="w-3 h-3 rounded-full bg-indigo-400 dark:bg:slate-50" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                </div>
-
-                <!-- Slider controls (Sides) -->
-                <button type="button" class="transition absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-slate-50/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-slate-50 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-indigo-400 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button" class="transition absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-slate-50/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-slate-50 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-indigo-400 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
+                    <div id="terminal-body" class="bg-gray-900 text-green-400 p-4 flex-1 overflow-y-auto"></div>
+                </article>
+                </a>
             </div>
-        </section>
 
+            <!-- Photo: 2 wide, 1 tall on lg -->
+            <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener" class="lg:col-span-2 h-96 overflow-hidden rounded-lg hover:shadow-neon transition-shadow duration-300">
+                <img class="w-full h-full object-cover" src="./build/assets/bust-normal.jpg" alt="Jason Blackert">
+            </a>
+
+            <!-- GitHub Activity: 2 wide, 1 tall on lg -->
+            <div id="github-activity" class="col-span-full scroll-mt-20">
+                <a href="https://github.com/jasonblackert" target="_blank" rel="noopener" class="block">
+                <div class="bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden">
+                    <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                        <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                        <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                        <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                        <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / github-activity</span>
+                    </div>
+                    <div class="p-5">
+                        <div id="contribution-graph" class="pb-1 flex justify-center"></div>
+                        <p class="text-xs text-right text-gray-500 mt-3">Last 12 months &middot; <a href="https://github.com/JasonBlackert" class="text-indigo-400 hover:text-indigo-300" target="_blank" rel="noopener">JasonBlackert</a></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <!-- Project Cards: 1 col each on lg, 1 col each on sm -->
+            <a href="https://github.com/jasonblackert/pulse" target="_blank" rel="noopener" class="flex flex-col">
+            <article id="projects" class="scroll-mt-20 bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden flex flex-col flex-1">
+                <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                    <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                    <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / pulse</span>
+                </div>
+                <div class="p-5 flex flex-col gap-3 flex-1">
+                    <h3 class="text-xl font-bold text-white font-mono">pulse</h3>
+                    <p class="text-sm text-gray-400 flex-1">Reworked self-healing mesh network</p>
+                    <div class="flex items-center gap-3 mt-2 flex-wrap">
+                        <span class="text-xs px-2 py-0.5 rounded border bg-yellow-500/20 text-yellow-300 border-yellow-600">Python</span>
+                        <span class="text-xs text-gray-500">★ 2</span>
+                        <span class="ml-auto text-xs text-indigo-400 font-mono">View →</span>
+                    </div>
+                </div>
+            </article>
+            </a>
+
+            <a href="https://github.com/jasonblackert/kegomatic" target="_blank" rel="noopener" class="flex flex-col">
+            <article class="bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden flex flex-col flex-1">
+                <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                    <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                    <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / kegomatic</span>
+                </div>
+                <div class="p-5 flex flex-col gap-3 flex-1">
+                    <h3 class="text-xl font-bold text-white font-mono">kegomatic</h3>
+                    <p class="text-sm text-gray-400 flex-1">Flowmeter for kegs at the office</p>
+                    <div class="flex items-center gap-3 mt-2 flex-wrap">
+                        <span class="text-xs px-2 py-0.5 rounded border bg-yellow-500/20 text-yellow-300 border-yellow-600">Python</span>
+                        <span class="text-xs text-gray-500">★ 1</span>
+                        <span class="ml-auto text-xs text-indigo-400 font-mono">View →</span>
+                    </div>
+                </div>
+            </article>
+            </a>
+
+            <a href="https://github.com/jasonblackert/esp32" target="_blank" rel="noopener" class="flex flex-col">
+            <article class="bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden flex flex-col flex-1">
+                <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                    <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                    <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / esp32</span>
+                </div>
+                <div class="p-5 flex flex-col gap-3 flex-1">
+                    <h3 class="text-xl font-bold text-white font-mono">esp32</h3>
+                    <p class="text-sm text-gray-400 flex-1">ESP32 servo control via GPIO and MQTT</p>
+                    <div class="flex items-center gap-3 mt-2 flex-wrap">
+                        <span class="text-xs px-2 py-0.5 rounded border bg-blue-500/20 text-blue-300 border-blue-600">C++</span>
+                        <span class="text-xs text-gray-500">★ 1</span>
+                        <span class="ml-auto text-xs text-indigo-400 font-mono">View →</span>
+                    </div>
+                </div>
+            </article>
+            </a>
+
+            <a href="https://github.com/jasonblackert/servo2alexa" target="_blank" rel="noopener" class="flex flex-col">
+            <article class="bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden flex flex-col flex-1">
+                <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                    <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                    <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                    <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / servo2alexa</span>
+                </div>
+                <div class="p-5 flex flex-col gap-3 flex-1">
+                    <h3 class="text-xl font-bold text-white font-mono">servo2alexa</h3>
+                    <p class="text-sm text-gray-400 flex-1">Alexa → SinricPro → MQTT → ESP32 servo control</p>
+                    <div class="flex items-center gap-3 mt-2 flex-wrap">
+                        <span class="text-xs px-2 py-0.5 rounded border bg-yellow-500/20 text-yellow-300 border-yellow-600">Python</span>
+                        <span class="text-xs text-gray-500">★ 0</span>
+                        <span class="ml-auto text-xs text-indigo-400 font-mono">View →</span>
+                    </div>
+                </div>
+            </article>
+            </a>
+
+            <!-- Testimonials: full width -->
+            <section id="testimonials" class="col-span-full scroll-mt-20">
+                <div class="bg-gray-900 rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300 overflow-hidden">
+                    <!-- Terminal header -->
+                    <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
+                        <span class="group w-2.5 h-2.5 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-red-900 font-bold leading-none select-none">×</span></span>
+                        <span class="group w-2.5 h-2.5 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-yellow-900 font-bold leading-none select-none">−</span></span>
+                        <span class="group w-2.5 h-2.5 rounded-full bg-green-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[7px] text-green-900 font-bold leading-none select-none">□</span></span>
+                        <span class="font-mono text-xs text-gray-400 ml-2 title-text">jasonblackert / testimonials</span>
+                    </div>
+
+                    <div id="default-carousel" class="relative w-full" data-carousel="slide" data-carousel-interval="8000">
+                        <!-- Carousel wrapper -->
+                        <div class="relative h-56 overflow-hidden md:h-96">
+                            <!-- Item 1 -->
+                            <div class="duration-700 ease-in-out px-20 py-8 bg-gray-900" data-carousel-item="active">
+                                <a class="w-full align-top" href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener">
+                                    <div class="flex flex-row">
+                                        <img src="./build/assets/linkedin-image-asa.jpg" class="rounded-full w-12 h-12" alt="Asa Murphy">
+                                        <div class="flex flex-col px-2">
+                                            <div class="flex flow-row">
+                                                <strong class="text-white"> Asa Murphy</strong> <span class="text-gray-400 px-1"> · 1st</span>
+                                            </div>
+                                            <span class="tracking-normal text-gray-300">Software Engineer</span>
+                                            <i class="text-gray-400"> April 1, 2024</i>
+                                        </div>
+                                    </div>
+                                </a>
+                                <p class="px-12 py-4 mr-2 text-gray-300">
+                                    "Jason is someone who knows how to lead by example. I consider him to be one of my early mentors even though we are around the same age. He has provided me great insight in the technology space, and will always go the extra mile to make sure a sound understanding in an unfamiliar concept is gained. If I had to describe Jason in one word it would be experienced. He knows how to execute and teach others to do the same. These are vital traits for an engineer to have."
+                                </p>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="duration-700 ease-in-out px-20 py-8 bg-gray-900" data-carousel-item>
+                                <a class="w-full align-top" href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener">
+                                    <div class="flex flex-row">
+                                        <img src="./build/assets/linkedin-image-luis.jpg" class="rounded-full w-12 h-12" alt="Luis Aguilar García">
+                                        <div class="flex flex-col px-2">
+                                            <div class="flex flow-row">
+                                                <strong class="text-white"> Luis Alberto Aguilar García</strong> <span class="text-gray-400 px-1"> · 1st</span>
+                                            </div>
+                                            <span class="tracking-normal text-gray-300">IoT Software Engineer | MBA</span>
+                                            <i class="text-gray-400"> March 1, 2024</i>
+                                        </div>
+                                    </div>
+                                </a>
+                                <p class="px-12 py-4 mr-4 text-gray-300">
+                                    "It was a pleasure working with Jason. He was a highly proactive and determined individual, always eager to get things done. He demonstrated a strong desire for continuous learning and was enthusiastic about sharing his knowledge with others. Without a doubt, he is someone who is willing to go above and beyond to ensure that projects are successfully completed. I have no doubt that Jason will continue to excel in his career and I wish him every success in his future endeavors."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Slider indicators -->
+                        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                            <button type="button" class="w-3 h-3 rounded-full bg-indigo-400" aria-current="true" aria-label="Slide 0" data-carousel-slide-to="1"></button>
+                            <button type="button" class="w-3 h-3 rounded-full bg-indigo-400" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                        </div>
+
+                        <!-- Slider controls -->
+                        <button type="button" class="transition absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-700/40 group-hover:bg-gray-700/60 group-focus:ring-4 group-focus:ring-indigo-900 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-indigo-400 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                </svg>
+                                <span class="sr-only">Previous</span>
+                            </span>
+                        </button>
+                        <button type="button" class="transition absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-700/40 group-hover:bg-gray-700/60 group-focus:ring-4 group-focus:ring-indigo-900 group-focus:outline-none">
+                                <svg class="w-4 h-4 text-indigo-400 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <span class="sr-only">Next</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- end bento grid -->
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script>
+        (function() {
+            const body = document.getElementById('terminal-body');
+            const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+            async function typeCmd(text) {
+                const line = document.createElement('div');
+                const prompt = document.createElement('span');
+                prompt.className = 'text-indigo-400';
+                prompt.textContent = '$ ';
+                line.appendChild(prompt);
+                const txt = document.createTextNode('');
+                line.appendChild(txt);
+                const cur = document.createElement('span');
+                cur.textContent = '█';
+                cur.className = 'cursor-blink';
+                line.appendChild(cur);
+                body.appendChild(line);
+                for (const ch of text) {
+                    txt.textContent += ch;
+                    body.scrollTop = body.scrollHeight;
+                    await sleep(55);
+                }
+                cur.remove();
+            }
+
+            function print(lines, cls = 'text-gray-300') {
+                (Array.isArray(lines) ? lines : [lines]).forEach(t => {
+                    const el = document.createElement('div');
+                    el.className = cls;
+                    el.textContent = t;
+                    body.appendChild(el);
+                });
+                body.scrollTop = body.scrollHeight;
+            }
+
+            async function run() {
+                await sleep(500);
+
+                await typeCmd('whoami');
+                await sleep(120);
+                print('jason_blackert', 'text-white');
+                print('');
+
+                await sleep(350);
+                await typeCmd('cat title.txt');
+                await sleep(120);
+                print('Senior Embedded Software Engineer', 'text-indigo-300');
+                print('');
+
+                await sleep(350);
+                await typeCmd('cat background.txt');
+                await sleep(120);
+                print([
+                    'B.S. Computer Engineering — Texas State University',
+                    'Embedded SW @ Tactual Labs Co.',
+                    'IoT SW @ Yotta Energy Co.',
+                ]);
+                print('');
+
+                await sleep(350);
+                await typeCmd('ls skills/');
+                await sleep(120);
+                print('C/C++  Python  MQTT  Linux  Git  Docker  PyQt', 'text-green-400');
+                print('');
+
+                await sleep(350);
+                await typeCmd('./status.sh');
+                await sleep(120);
+                print('Training for a marathon & hunting a possum 🐾', 'text-yellow-400');
+                print('');
+
+                await sleep(350);
+                print('cd /etc/favorite && cat quote', 'text-green-400');
+                await sleep(120);
+                print('"--But I work hard and never give up; that is my gift. -- Rock Lee, Naruto""');
+                print('');
+
+                const idle = document.createElement('div');
+                idle.innerHTML = '<span class="text-indigo-400">$ </span><span class="cursor-blink">█</span>';
+                body.appendChild(idle);
+                body.scrollTop = body.scrollHeight;
+            }
+
+            const observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    observer.disconnect();
+                    run();
+                }
+            }, { threshold: 0.3 });
+            observer.observe(body);
+        })();
+    </script>
+<script>
         const btns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
         function applyTheme(dark) {
             document.documentElement.classList.toggle('dark', dark);
@@ -313,18 +353,131 @@
         });
     </script>
 <!-- Footer -->
-    <footer class="bg-indigo-400 text-white">
+    <footer class="bg-indigo-900 text-white">
         <section class="max-w-4xl mx-auto flex justify-between items-center ">
             <h1 class="text-xl sm:text-3xl font-medium py-4">
-                <a href="#biography">👾 Jason Blackert</a>
+                <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener">👾 Jason Blackert</a>
             </h1>
             <div class="just-between flex flex-row space-x-4 items-center  text-xl" aria-label="main">
-                <a href=mailto:jasonblackert@gmail.com><img class="size-10" src="./build/assets/email.png" alt="Email"></a>
-                <a href="https://www.linkedin.com/in/jasonblackert/"><img class="size-10" src="./build/assets/linkedin.png" alt="LinkedIn"></a>
-                <a href="https://github.com/jasonblackert"><img class="size-10" src="./build/assets/github.png" alt="GitHub"></a>
-                <a href="./build/assets/Blackert_Jason_Resume.pdf"><img class="size-10" src="./build/assets/resume.png" alt="Resume"></a>
+                <a href="mailto:jasonblackert@gmail.com" class="hover:opacity-90">Email</a>
+                <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener" class="hover:opacity-90">LinkedIn</a>
+                <a href="https://github.com/jasonblackert" target="_blank" rel="noopener" class="hover:opacity-90">GitHub</a>
+                <a href="./build/assets/Blackert_Jason_Resume.pdf" target="_blank" rel="noopener" class="hover:opacity-90">Resume</a>
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none hover:opacity-90">🌙</button>
             </div>
         </section>
     </footer>
+    <script>
+        (function () {
+            var COLORS_LIGHT = ['#e5e7eb', '#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1'];
+            var COLORS_DARK  = ['#374151', '#312e81', '#3730a3', '#4338ca', '#6366f1'];
+
+            function isDark() { return document.documentElement.classList.contains('dark'); }
+            function toDateStr(d) { return d.toISOString().split('T')[0]; }
+
+            async function loadContributions() {
+                var container = document.getElementById('contribution-graph');
+                if (!container) return;
+                container.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:2rem 0;font-size:.875rem;">Loading GitHub activity…</p>';
+                try {
+                    var res = await fetch('https://github-contributions-api.jogruber.de/v4/JasonBlackert?y=last');
+                    if (!res.ok) throw new Error();
+                    var data = await res.json();
+
+                    var map = {};
+                    (data.contributions || []).forEach(function (c) { map[c.date] = c.level; });
+
+                    var today = new Date(); today.setHours(0,0,0,0);
+                    var cutoff = new Date(today); cutoff.setFullYear(cutoff.getFullYear() - 1);
+                    var start = new Date(cutoff); start.setDate(start.getDate() - start.getDay());
+
+                    var weeks = [], week = [], cur = new Date(start);
+                    while (cur <= today) {
+                        week.push(new Date(cur));
+                        if (week.length === 7) { weeks.push(week); week = []; }
+                        cur.setDate(cur.getDate() + 1);
+                    }
+                    if (week.length) weeks.push(week);
+
+                    container.innerHTML = '';
+                    var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    var DAY_LABELS = ['Su','','Tu','','Th','','Sa'];
+                    var DAY_COL_W = 22, GAP = 2;
+                    var CELL = Math.floor((container.offsetWidth - DAY_COL_W - (weeks.length - 1) * GAP) / weeks.length);
+                    CELL = Math.max(6, Math.min(13, CELL));
+
+                    var outer = document.createElement('div');
+                    outer.style.cssText = 'display:flex;align-items:flex-start;';
+
+                    var dayCol = document.createElement('div');
+                    dayCol.style.cssText = 'display:flex;flex-direction:column;gap:' + GAP + 'px;padding-top:' + (CELL + GAP) + 'px;margin-right:4px;';
+                    DAY_LABELS.forEach(function (lbl) {
+                        var el = document.createElement('div');
+                        el.style.cssText = 'height:' + CELL + 'px;line-height:' + CELL + 'px;font-size:9px;color:#9ca3af;text-align:right;min-width:14px;';
+                        el.textContent = lbl;
+                        dayCol.appendChild(el);
+                    });
+                    outer.appendChild(dayCol);
+
+                    var rightSide = document.createElement('div');
+
+                    var monthRow = document.createElement('div');
+                    monthRow.style.cssText = 'display:flex;gap:' + GAP + 'px;margin-bottom:' + GAP + 'px;';
+                    var lastMonth = -1;
+                    weeks.forEach(function (wk) {
+                        var el = document.createElement('div');
+                        el.style.cssText = 'width:' + CELL + 'px;font-size:9px;color:#9ca3af;overflow:visible;white-space:nowrap;';
+                        var m = wk[0].getMonth();
+                        if (m !== lastMonth) { lastMonth = m; el.textContent = MONTHS[m]; }
+                        monthRow.appendChild(el);
+                    });
+                    rightSide.appendChild(monthRow);
+
+                    var grid = document.createElement('div');
+                    grid.id = 'contrib-grid';
+                    grid.style.cssText = 'display:flex;gap:' + GAP + 'px;';
+
+                    weeks.forEach(function (wk) {
+                        var col = document.createElement('div');
+                        col.style.cssText = 'display:flex;flex-direction:column;gap:' + GAP + 'px;';
+                        wk.forEach(function (day) {
+                            var cell = document.createElement('div');
+                            cell.style.cssText = 'width:' + CELL + 'px;height:' + CELL + 'px;border-radius:2px;';
+                            if (day < cutoff) {
+                                cell.style.visibility = 'hidden';
+                            } else {
+                                var level = map[toDateStr(day)] || 0;
+                                cell.dataset.level = level;
+                                cell.style.backgroundColor = (isDark() ? COLORS_DARK : COLORS_LIGHT)[Math.min(level, 4)];
+                                cell.title = toDateStr(day);
+                            }
+                            col.appendChild(cell);
+                        });
+                        grid.appendChild(col);
+                    });
+
+                    rightSide.appendChild(grid);
+                    outer.appendChild(rightSide);
+                    container.appendChild(outer);
+                } catch (e) {
+                    container.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:2rem 0;font-size:.875rem;">Unable to load GitHub activity.</p>';
+                }
+            }
+
+            function recolorGrid() {
+                var palette = isDark() ? COLORS_DARK : COLORS_LIGHT;
+                var grid = document.getElementById('contrib-grid');
+                if (!grid) return;
+                grid.querySelectorAll('[data-level]').forEach(function (cell) {
+                    cell.style.backgroundColor = palette[Math.min(parseInt(cell.dataset.level, 10) || 0, 4)];
+                });
+            }
+
+            loadContributions();
+            document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(function (btn) {
+                btn.addEventListener('click', function () { setTimeout(recolorGrid, 50); });
+            });
+        })();
+    </script>
 </body>
 </html>
