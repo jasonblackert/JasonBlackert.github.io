@@ -13,9 +13,11 @@ Static personal portfolio site styled with Tailwind CSS, deployed to GitHub Page
 
 - **Terminal aesthetic** — macOS-style traffic-light dots, monospace font, card title bars, animated boot sequence page loader
 - **Multi-page** — Home, About, Contact; active nav link highlighted per page
-- **Dark / light mode** — toggle in header; initializes from `prefers-color-scheme`, persists via `localStorage`
+- **Responsive nav** — desktop shows full nav; mobile collapses to hamburger (☰/✕ toggle) with about, contact, and theme toggle inside
+- **Dark / light mode** — toggle in header (desktop) or hamburger menu (mobile); initializes from `prefers-color-scheme`, persists via `localStorage`
 - **Testimonials** — custom vanilla JS fade switcher (prev/next + dot indicators, auto-advances every 8s)
 - **Animated footer icon** — static Google Noto alien emoji, switches to animated GIF on hover
+- **Responsive GitHub activity graph** — cell size computed from container width, re-renders on resize, centered when below max cell size
 
 ## Pages
 
