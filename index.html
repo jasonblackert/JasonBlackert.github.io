@@ -15,6 +15,42 @@
         .title-text { white-space: nowrap; display: inline-block; transition: transform 1.5s ease-in-out; }
         .title-bar:hover .title-text { transform: translateX(-2.5rem); }
         .title-bar .rounded-full { position: relative; z-index: 1; }
+
+        /* Light mode overrides */
+        html:not(.dark) body { background-color: #f1f5f9; }
+        /* Bio card + headshot */
+        html:not(.dark) #biography article { border-color: #c7d2fe !important; background-color: #ffffff; }
+        html:not(.dark) main > div > a[href*="linkedin"] { border-color: #c7d2fe !important; }
+        html:not(.dark) #terminal-body { background-color: #ffffff !important; }
+        html:not(.dark) #terminal-body .text-indigo-400 { color: #4338ca; }
+        html:not(.dark) #terminal-body .text-green-400 { color: #15803d; }
+        html:not(.dark) #terminal-body .text-gray-300 { color: #334155; }
+        html:not(.dark) #terminal-body .text-white { color: #1e293b; }
+        html:not(.dark) #terminal-body .text-yellow-400 { color: #b45309; }
+        html:not(.dark) #terminal-body .text-indigo-300 { color: #4338ca; }
+        /* Card backgrounds */
+        html:not(.dark) #github-activity div.bg-gray-900,
+        html:not(.dark) main article.bg-gray-900,
+        html:not(.dark) #testimonials > div { background-color: #ffffff !important; border-color: #c7d2fe !important; }
+        html:not(.dark) [data-carousel-item] { background-color: #ffffff !important; }
+        html:not(.dark) .title-bar { background-color: #e0e7ff !important; }
+        html:not(.dark) .title-text { color: #4338ca !important; }
+        /* Project card text */
+        html:not(.dark) main article.bg-gray-900 h3 { color: #1e293b; }
+        html:not(.dark) main article.bg-gray-900 > div > p { color: #64748b; }
+        html:not(.dark) main article.bg-gray-900 .text-gray-500 { color: #94a3b8; }
+        html:not(.dark) main article.bg-gray-900 .text-indigo-400 { color: #4f46e5; }
+        html:not(.dark) main article .border-yellow-600 { background-color: #fef3c7; color: #92400e; border-color: #d97706; }
+        html:not(.dark) main article .border-blue-600 { background-color: #eff6ff; color: #1d4ed8; border-color: #3b82f6; }
+        /* GH activity text */
+        html:not(.dark) #github-activity .text-gray-500 { color: #64748b; }
+        html:not(.dark) #github-activity .text-indigo-400 { color: #4f46e5; }
+        /* Testimonials text */
+        html:not(.dark) [data-carousel-item] strong { color: #1e293b; }
+        html:not(.dark) [data-carousel-item] .text-gray-400 { color: #64748b; }
+        html:not(.dark) [data-carousel-item] .text-gray-300 { color: #475569; }
+        html:not(.dark) [data-carousel-item] p { color: #475569; }
+        html:not(.dark) [data-carousel-item] i { color: #94a3b8; }
     </style>
     <script>
         (function() {
@@ -44,7 +80,7 @@
             <!-- Terminal Bio: 2 wide, 2 tall on lg -->
             <div id="biography" class="lg:col-span-2 scroll-mt-20 h-96 flex flex-col">
                 <a href="./build/assets/Blackert_Jason_Resume.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
-                <article class="rounded-lg overflow-hidden hover:shadow-neon transition-shadow duration-300 font-mono text-sm flex flex-col h-full">
+                <article class="rounded-lg overflow-hidden border border-indigo-900 hover:shadow-neon transition-shadow duration-300 font-mono text-sm flex flex-col h-full">
                     <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 title-bar">
                         <span class="group w-3 h-3 rounded-full bg-red-500 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[8px] text-red-900 font-bold leading-none select-none">×</span></span>
                         <span class="group w-3 h-3 rounded-full bg-yellow-400 inline-flex items-center justify-center cursor-default shrink-0"><span class="opacity-0 group-hover:opacity-100 text-[8px] text-yellow-900 font-bold leading-none select-none">−</span></span>
@@ -57,7 +93,7 @@
             </div>
 
             <!-- Photo: 2 wide, 1 tall on lg -->
-            <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener" class="lg:col-span-2 h-96 overflow-hidden rounded-lg hover:shadow-neon transition-shadow duration-300">
+            <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener" class="lg:col-span-2 h-96 overflow-hidden rounded-lg border border-indigo-900 hover:shadow-neon transition-shadow duration-300">
                 <img class="w-full h-full object-cover" src="./build/assets/bust-normal.jpg" alt="Jason Blackert">
             </a>
 
@@ -336,35 +372,13 @@
             observer.observe(body);
         })();
     </script>
-<script>
-        const btns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
-        function applyTheme(dark) {
-            document.documentElement.classList.toggle('dark', dark);
-            btns.forEach(function(b) { if (b) b.textContent = dark ? '☀️' : '🌙'; });
-        }
-        applyTheme(document.documentElement.classList.contains('dark'));
-        btns.forEach(function(btn) {
-            if (!btn) return;
-            btn.addEventListener('click', function() {
-                const isDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                btns.forEach(function(b) { if (b) b.textContent = isDark ? '☀️' : '🌙'; });
-            });
-        });
-    </script>
 <!-- Footer -->
     <footer class="bg-indigo-900 text-white">
         <section class="max-w-4xl mx-auto flex justify-between items-center ">
             <h1 class="text-xl sm:text-3xl font-medium py-4">
                 <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener">👾 Jason Blackert</a>
             </h1>
-            <div class="just-between flex flex-row space-x-4 items-center  text-xl" aria-label="main">
-                <a href="mailto:jasonblackert@gmail.com" class="hover:opacity-90">Email</a>
-                <a href="https://www.linkedin.com/in/jasonblackert/" target="_blank" rel="noopener" class="hover:opacity-90">LinkedIn</a>
-                <a href="https://github.com/jasonblackert" target="_blank" rel="noopener" class="hover:opacity-90">GitHub</a>
-                <a href="./build/assets/Blackert_Jason_Resume.pdf" target="_blank" rel="noopener" class="hover:opacity-90">Resume</a>
-                <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none hover:opacity-90">🌙</button>
-            </div>
+            <button id="theme-toggle" aria-label="Toggle dark mode" class="text-2xl focus:outline-none hover:opacity-90">🌙</button>
         </section>
     </footer>
     <script>
@@ -478,6 +492,22 @@
                 btn.addEventListener('click', function () { setTimeout(recolorGrid, 50); });
             });
         })();
+    </script>
+    <script>
+        const btns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+        function applyTheme(dark) {
+            document.documentElement.classList.toggle('dark', dark);
+            btns.forEach(function(b) { if (b) b.textContent = dark ? '☀️' : '🌙'; });
+        }
+        applyTheme(document.documentElement.classList.contains('dark'));
+        btns.forEach(function(btn) {
+            if (!btn) return;
+            btn.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                btns.forEach(function(b) { if (b) b.textContent = isDark ? '☀️' : '🌙'; });
+            });
+        });
     </script>
 </body>
 </html>
