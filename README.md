@@ -1,18 +1,29 @@
 # Jason Blackert's Portfolio
 
-Static personal portfolio site. Single-page HTML styled with Tailwind CSS, deployed to GitHub Pages from the `main` branch.
+Static personal portfolio site styled with Tailwind CSS, deployed to GitHub Pages from the `main` branch.
 
 ## Stack
 
-- **HTML** — `index.html` contains the entire site (Biography, Projects, Certificates, Testimonials)
-- **Tailwind CSS v3** — utility-first styling with two custom `boxShadow` utilities: `shadow-neon` and `shadow-low`
-- **Flowbite** — carousel component for the Testimonials section (loaded via CDN)
+- **HTML** — multi-page site (`index.html`, `about.html`, `contact.html`)
+- **Tailwind CSS v3** — utility-first styling with custom `shadow-neon` and `shadow-low` box-shadow utilities
+- **Vanilla JS** — terminal page loader, testimonials switcher, dark mode toggle
 - **Prettier** — HTML formatting via `prettier-plugin-tailwindcss`
 
 ## Features
 
-- **Dark mode** — toggle button in the nav (desktop and mobile). Initializes from `prefers-color-scheme`; user preference persists via `localStorage`.
-- **Testimonials carousel** — Flowbite slide carousel with prev/next controls.
+- **Terminal aesthetic** — macOS-style traffic-light dots, monospace font, card title bars, animated boot sequence page loader
+- **Multi-page** — Home, About, Contact; active nav link highlighted per page
+- **Dark / light mode** — toggle in header; initializes from `prefers-color-scheme`, persists via `localStorage`
+- **Testimonials** — custom vanilla JS fade switcher (prev/next + dot indicators, auto-advances every 8s)
+- **Animated footer icon** — static Google Noto alien emoji, switches to animated GIF on hover
+
+## Pages
+
+| Page | Description |
+|---|---|
+| `index.html` | Home — bio terminal, GitHub activity, projects, certificates, testimonials |
+| `about.html` | About — animated terminal walkthrough of background, education, skills, interests |
+| `contact.html` | Contact — clickable links for email, LinkedIn, GitHub, Instagram |
 
 ## Development
 
@@ -39,15 +50,17 @@ npm run prettier
 ## Project Structure
 
 ```
-index.html          # Entire site — all sections in one file
-src/input.css       # Tailwind entry point
-build/css/style.css # Compiled CSS (committed — required for GitHub Pages)
-build/assets/       # Images, icons, resume PDF
-tailwind.config.js  # Tailwind config with custom shadow utilities
+index.html              # Home page
+about.html              # About page
+contact.html            # Contact page
+src/input.css           # Tailwind entry point
+build/css/style.css     # Compiled CSS (committed — required for GitHub Pages)
+build/assets/           # Images, icons, resume PDF, emoji assets
+tailwind.config.js      # Tailwind config with custom shadow utilities
 ```
 
 ## Deployment
 
-The `build/css/style.css` file is committed to the repo so GitHub Pages can serve the site without a CI build step. Always rebuild CSS before merging to `main`.
+`build/css/style.css` is committed to the repo so GitHub Pages can serve the site without a CI build step. Always rebuild CSS before merging to `main`.
 
 Active development happens on the `development` branch.
