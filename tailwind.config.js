@@ -2,8 +2,6 @@
 module.exports = {
   content: [
         "./*.html",
-        //'./node_modules/tw-elements/js/**/*.js',
-        //"./node_modules/flowbite/**/*.js"
       ],
   darkMode: 'class',
   theme: {
@@ -18,8 +16,5 @@ module.exports = {
       }
     },
   },
-  plugins: [
-    //require('tw-elements/plugin.cjs'),
-    //require('flowbite/plugin.js')
-  ],
+  plugins: [],
 }
